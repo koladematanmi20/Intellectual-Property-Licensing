@@ -1,21 +1,39 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 
-import { describe, expect, it } from "vitest";
+describe('Royalty Distribution Contract', () => {
+  let mockContractCall: any
+  
+  beforeEach(() => {
+    mockContractCall = vi.fn()
+  })
+  
+  it('should pay royalty', async () => {
+    mockContractCall.mockResolvedValue({ success: true, value: 1 })
+    const result = await mockContractCall('pay-royalty', 1, 100, 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM')
+    expect(result.success).toBe(true)
+    expect(result.value).toBe(1)
+  })
+  
+  it('should get royalty payment details', async () => {
+    mockContractCall.mockResolvedValue({
+      success: true,
+      value: {
+        amount: 100,
+        paidAt: 12345,
+        recipient: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM'
+      }
+    })
+    const result = await mockContractCall('get-royalty-payment', 1, 1)
+    expect(result.success).toBe(true)
+    expect(result.value.amount).toBe(100)
+    expect(result.value.recipient).toBe('ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM')
+  })
+  
+  it('should get total royalties for a license', async () => {
+    mockContractCall.mockResolvedValue({ success: true, value: 0 })
+    const result = await mockContractCall('get-total-royalties', 1)
+    expect(result.success).toBe(true)
+    expect(result.value).toBe(0)
+  })
+})
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});

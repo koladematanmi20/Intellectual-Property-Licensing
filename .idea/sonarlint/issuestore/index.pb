@@ -15,3 +15,5 @@ F
 tests/ip-token.test.ts,a/b/ab6cb1c1a3bc74f45dd3a0f09214aba5394aa61a
 S
 #contracts/royalty-distribution.clar,9/9/995e55fe213df7ff94d708e34d0568520c645601
+R
+"tests/royalty-distribution.test.ts,e/7/e7225c58018802eab038cf8c0e1ab7709bd94aab
