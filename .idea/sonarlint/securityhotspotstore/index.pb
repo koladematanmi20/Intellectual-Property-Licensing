@@ -11,3 +11,5 @@ R
 "tests/fractional-ownership.test.ts,6/6/66b5e79afe8946de14e75b0ef62dc765a4ca607e
 G
 contracts/ip-token.clar,d/6/d687f6a29ed41c93dab10f705b9994d99b7e212e
+F
+tests/ip-token.test.ts,a/b/ab6cb1c1a3bc74f45dd3a0f09214aba5394aa61a
